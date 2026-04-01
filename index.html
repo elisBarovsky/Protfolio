@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elis | Full Stack & Game Dev</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="light-mode">
+
+    <div class="cursor"></div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">ELIS.DEV</div>
+            <div class="nav-links">
+                <a href="#projects">Projects</a>
+                <button id="theme-toggle" aria-label="Toggle dark mode">
+                    <span class="mode-icon">🌓</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Hello, I'm Elis. <br>
+                I am a <span class="typewriter-text" data-words='["Full Stack Developer", "Game Designer", "Creative Coder"]'></span><span class="cursor-blink">|</span>
+        </div>
+        <p class="hero-bio">Passionate about blending clean, efficient code with engaging gameplay experiences. Currently exploring the intersection of web technology and interactive narratives.</p>
+        </div>
+
+        <div class="hero-visual" onclick="openCV()" title="Click to view my CV">
+            <div class="avatar-frame">
+                <img src="avatar.png" alt="Elis Pixel Art Avatar" class="avatar-img">
+            </div>
+            <div class="cv-label">View CV</div>
+        </div>
+    </header>
+
+    <section id="projects" class="projects">
+        <div class="section-header">
+            <h2>Featured Projects</h2>
+            <p>// Some of my recent work</p>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card large">
+                <div class="card-content">
+                    <span class="tag">Game Dev</span>
+                    <h3>Project Nebula</h3>
+                    <p>A 2D space exploration game built with Unity. Focused on procedural generation and resource management mechanics.</p>
+                    <div class="card-tech">Unity / C# / Aseprite</div>
+                </div>
+                <div class="card-visual">[ Visual Placeholder 1 ]</div>
+            </div>
+
+            <div class="project-card wide">
+                <div class="card-content">
+                    <span class="tag">Full Stack</span>
+                    <h3>DevSync Portal</h3>
+                    <p>Real-time collaboration platform for developers. Implemented WebSockets for live chat and shared code editing.</p>
+                    <div class="card-tech">React / Node.js / Socket.io</div>
+                </div>
+            </div>
+
+            <div class="project-card small">
+                <div class="card-content">
+                    <span class="tag">Experiment</span>
+                    <h3>Pixel Physics</h3>
+                    <p>A small JavaScript physics engine simulation using canvas.</p>
+                    <div class="card-tech">JS / Canvas / HTML5</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <h2>GET_IN_TOUCH</h2>
+            <p>I'm always open to new projects, creative ideas, or opportunities to be part of your visions.</p>
+
+            <div class="social-links">
+                <a href="https://linkedin.com/in/YOURNAME" target="_blank" class="social-icon" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/YOURNAME" target="_blank" class="social-icon" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://instagram.com/YOURNAME" target="_blank" class="social-icon" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="mailto:elis@example.com" class="social-icon" title="Email">
+                    <i class="far fa-envelope"></i>
+                </a>
+            </div>
+
+            <a href="mailto:elis@example.com" class="main-contact-btn">SAY HELLO</a>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2026 Ellis. All code & design strictly tailored.</p>
+    </footer>
+
+    <div id="cv-popup" class="popup">
+        <div class="popup-content character-sheet">
+            <span class="close" onclick="closeCV()" title="Close">&times;</span>
+            <div class="sheet-header">
+                <h2>CHARACTER PROFILE: ELIS</h2>
+                <span class="class-tag">Class: Creative Developer</span>
+            </div>
+            <div class="sheet-body">
+                <div class="stats-col">
+                    <h3>// Attributes</h3>
+                    <ul>
+                        <li><span class="stat-name">JavaScript:</span> <span class="stat-value">Lv. 8</span></li>
+                        <li><span class="stat-name">React:</span> <span class="stat-value">Lv. 7</span></li>
+                        <li><span class="stat-name">Unity/C#:</span> <span class="stat-value">Lv. 9</span></li>
+                        <li><span class="stat-name">UI/UX Design:</span> <span class="stat-value">Lv. 8</span></li>
+                    </ul>
+                </div>
+                <div class="xp-col">
+                    <h3>// Experience</h3>
+                    <p><strong>Freelance Game Designer (2022-Present):</strong> Developed 3 indie titles focused on unique mechanics.</p>
+                    <p><strong>Junior Web Developer (2021-2022):</strong> Built responsive frontend interfaces for various clients.</p>
+                    <h3>// Objective</h3>
+                    <p>To craft seamless digital experiences where elegant code meets engaging gameplay.</p>
+                </div>
+            </div>
+        </div>
+        <div class="sheet-footer">
+            <a href="assets/Elis_CV.pdf" download="Elis_CV" class="download-btn">
+                <span class="btn-icon">💾</span> DOWNLOAD_SYSTEM_FILE (.PDF)
+            </a>
+        </div>
+    </div>
+
+    <script src="Script.js"></script>
+</body>
+</html>
