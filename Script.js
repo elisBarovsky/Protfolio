@@ -40,9 +40,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function openCV() {
-    document.getElementById('cv-popup').style.display = 'flex';
+    const popup = document.getElementById('cv-popup');
+    popup.style.display = 'flex';
+    setTimeout(() => {
+        popup.classList.add('open');
+    }, 10);
 }
 
 function closeCV() {
-    document.getElementById('cv-popup').style.display = 'none';
+    const popup = document.getElementById('cv-popup');
+    popup.classList.remove('open');
+    setTimeout(() => {
+        popup.style.display = 'none';
+    }, 300); 
 }
+

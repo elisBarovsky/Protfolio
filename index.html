@@ -34,37 +34,11 @@
             </p>
             <p class="hero-bio">Blending clean code with engaging gameplay experiences. Currently exploring the intersection of web technology and interactive narratives.</p>
         </div>
-        <div class="jagged-visual"></div>
     </header>
 
     <section id="projects" class="projects">
         <h2>Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card large">
-                <div class="card-content">
-                    <span class="tag tag-magenta">Game Dev</span>
-                    <h3>Project Nebula</h3>
-                    <p>A 2D space exploration game built with Unity.</p>
-                    <div class="card-tech">Unity / C# / Aseprite</div>
-                </div>
-                <div class="card-visual">01</div>
-            </div>
-            <div class="project-card wide">
-                <div class="card-content">
-                    <span class="tag tag-cyan">Full Stack</span>
-                    <h3>DevSync Portal</h3>
-                    <p>Real-time collaboration platform for developers.</p>
-                    <div class="card-tech">React / Node.js / Socket.io</div>
-                </div>
-            </div>
-            <div class="project-card small">
-                <div class="card-content">
-                    <span class="tag tag-pink">Experiment</span>
-                    <h3>Pixel Physics</h3>
-                    <p>JavaScript physics engine simulation.</p>
-                    <div class="card-tech">JS / Canvas / HTML5</div>
-                </div>
-            </div>
+        <div class="projects-grid Bento">
         </div>
     </section>
 
@@ -72,10 +46,10 @@
         <div class="contact-container">
             <h2>GET_IN_TOUCH</h2>
             <div class="interactive-avatar-container">
-                <div class="avatar-frame" onclick="openCV()">
+                <div class="avatar-frame interactable" onclick="openCV()">
                     <img src="avatar.png" alt="Elis Avatar" class="avatar-img">
                 </div>
-                <div class="cv-label" onclick="openCV()">View CV</div>
+                <div class="cv-label interactable" onclick="openCV()">View CV</div>
             </div>
             <div class="social-links">
                 <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
@@ -84,26 +58,40 @@
                 <a href="mailto:elis@example.com" class="social-icon"><i class="far fa-envelope"></i></a>
             </div>
             <a href="mailto:elis@example.com" class="main-contact-btn">SAY HELLO</a>
-        </div>
-    </section>
+
+</section>
 
     <div id="cv-popup" class="popup">
-        <div class="popup-content">
-            <span class="close" onclick="closeCV()">&times;</span>
-            <h2>CHARACTER PROFILE: ELLIS</h2>
-            <div class="sheet-body">
-                <div class="stats-col">
+        <div class="popup-content character-sheet CRT-flicker">
+            <span class="close interactable" onclick="closeCV()">&times;</span>
+            <div class="sheet-header">
+                <h2>CHARACTER PROFILE: ELIS</h2>
+                <span class="class-tag">Class: Creative Developer</span>
+            </div>
+            <div class="sheet-body cv-bento">
+                <div class="cv-card small">
                     <h3>// Attributes</h3>
                     <p>JS: <span class="stat-value">Lv. 8</span></p>
                     <p>Unity: <span class="stat-value">Lv. 9</span></p>
                 </div>
-                <div class="xp-col">
-                    <h3>// Bio</h3>
+                <div class="cv-card small">
+                    <h3>// Inventory</h3>
+                    <p>Skill <span class="stat-value">#1</span></p>
+                    <p>Project <span class="stat-value">#2</span></p>
+                </div>
+                <div class="cv-card large">
+                    <h3>// Experience</h3>
                     <p>Crafting digital worlds where code meets play.</p>
+                </div>
+                <div class="cv-card small">
+                    <h3>// Objective</h3>
+                    <p>New Quest: Get Hired!</p>
                 </div>
             </div>
             <div class="sheet-footer">
-                <a href="assets/Elis_CV.pdf" download class="download-btn">💾 DOWNLOAD CV (.PDF)</a>
+                <a href="assets/Elis_CV.pdf" download class="download-btn Quest-complete interactable">
+                    <i class="fas fa-file-download"></i> Quest Complete: SAVE CV (.PDF)
+                </a>
             </div>
         </div>
     </div>
