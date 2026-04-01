@@ -1,265 +1,120 @@
-﻿/* --- 1. Root Variables & Theme --- */
-:root {
-    /* Light Mode Palette (Neo-Retro) */
-    --bg-color: #FDFDFF; /* Pure, clean white */
-    --text-color: #111111; /* Sharp black */
-    --border-color: #111111; /* Black borders */
-    --accent-color: #FF007F; /* Neon Pink (inspired by your choice) */
-    /* Global Styles */
-    --font-main: 'Inter', sans-serif;
+﻿:root {
+    --bg-dark: #0A0216;
+    --hero-gradient: linear-gradient(180deg, #1A052A 0%, #E03F80 60%, #FDE6D1 100%);
+    --accent-cyan: #35F2DF;
+    --accent-magenta: #E03F80;
+    --text-peach: #FDE6D1;
     --font-mono: 'Space Mono', monospace;
-    --border-style: 2px solid var(--border-color);
-    --transition-speed: 0.3s;
-    --cursor-size: 20px;
+    --font-main: 'Inter', sans-serif;
 }
 
-/* Dark Mode Overrides */
-body.dark-mode {
-    --bg-color: #111111; /* Black */
-    --text-color: #FDFDFF; /* White text */
-    --border-color: #FDFDFF; /* White borders */
-    --accent-color: #00E5FF; /* Cyan Neon accent for Dark Mode */
-}
-
-/* --- 2. Global Reset & Base Styles --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    cursor: none; /* Hide default cursor to use custom one */
+    cursor: none !important; 
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color: var(--bg-dark);
+    color: var(--text-peach);
     font-family: var(--font-main);
-    transition: background-color var(--transition-speed), color var(--transition-speed);
     overflow-x: hidden;
 }
 
-/* --- 3. Custom Cursor Styling --- */
 .cursor {
-    width: var(--cursor-size);
-    height: var(--cursor-size);
-    border: 2px solid var(--accent-color);
-    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--accent-cyan);
     position: fixed;
-    pointer-events: none; /* Let clicks pass through */
-    z-index: 9999;
+    pointer-events: none;
+    z-index: 2000000; 
     transform: translate(-50%, -50%);
-    transition: transform 0.1s ease-out, background-color 0.2s;
+    transition: transform 0.15s ease-out, border-radius 0.3s, background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Cursor interaction when hovering links/buttons */
+.cursor-dot {
+    width: 4px;
+    height: 4px;
+    background-color: var(--accent-cyan);
+}
+
 body.cursor-hover .cursor {
-    transform: translate(-50%, -50%) scale(1.5);
-    background-color: rgba(255, 0, 127, 0.1);
+    transform: translate(-50%, -50%) rotate(45deg) scale(1.2);
+    border-color: var(--accent-magenta);
+    background-color: rgba(224, 63, 128, 0.2);
 }
 
-/* --- 4. Navigation Styling --- */
-nav {
-    border-bottom: var(--border-style);
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    background-color: var(--bg-color);
-    z-index: 1000;
+body.cursor-hover .cursor-dot {
+    background-color: var(--accent-magenta);
 }
 
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-}
-
-.logo {
-    font-family: var(--font-mono);
-    font-weight: 700;
-    font-size: 1.5rem;
-    letter-spacing: -1px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-}
-
-#theme-toggle {
-    background: none;
-    border: var(--border-style);
-    cursor: none; /* Important for custom cursor */
-    padding: 5px 10px;
-    transition: background-color var(--transition-speed);
-}
-
-#theme-toggle:hover {
-    background-color: var(--text-color);
-    color: var(--bg-color);
-}
-
-/* --- 5. Hero Section Styling --- */
 .hero {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 8rem 2rem;
+    height: 85vh;
+    background: var(--hero-gradient);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 4rem;
-    border-bottom: var(--border-style);
-}
-
-.hero-content {
-    flex: 2;
+    justify-content: center;
+    text-align: center;
+    position: relative;
 }
 
 .hero-title {
     font-family: var(--font-mono);
-    font-size: 3rem;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    color: var(--accent-cyan);
+    text-shadow: 3px 3px 0 var(--bg-dark);
+    margin-bottom: 1rem;
 }
 
-/* Typewriter Effect CSS */
 .typewriter-text {
-    color: var(--accent-color);
     font-weight: 700;
-    display: inline-block; /* הופך אותו לאלמנט עם מידות */
-    min-width: 380px; /* תני לו רוחב שיספיק למילה הכי ארוכה שלך */
-    text-align: left; /* שומר על יישור לשמאל בתוך השטח שלו */
-    vertical-align: bottom;
-}
-
-@media (max-width: 600px) {
-    .typewriter-text {
-        min-width: 100%;
-        display: block; /* במובייל עדיף שירד שורה לגמרי */
-    }
-}
-.cursor-blink {
-    font-weight: 400;
-    color: var(--text-color);
-    animation: blink 1s infinite;
-}
-
-@keyframes blink {
-    50% {
-        opacity: 0;
-    }
+    color: #ffffff;
+    display: inline-block;
+    min-width: 380px;
+    text-align: left;
 }
 
 .hero-bio {
-    font-size: 1.1rem;
     max-width: 600px;
-    opacity: 0.9;
+    color: var(--bg-dark);
+    font-weight: 600;
+    margin-top: 1rem;
 }
 
-/* Interactive Avatar Visual */
-.hero-visual {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: none; /* For custom cursor hover */
-}
-
-.avatar-frame {
-    width: 200px;
-    height: 200px;
-    border: var(--border-style);
-    border-radius: 50%;
-    overflow: hidden;
-    margin-bottom: 1rem;
-    transition: transform 0.2s;
-}
-
-.avatar-visual:hover .avatar-frame {
-    transform: rotate(5deg) scale(1.05);
-    border-color: var(--accent-color);
-}
-
-.avatar-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.cv-label {
-    font-family: var(--font-mono);
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    background-color: var(--accent-color);
-    color: white;
-    padding: 4px 10px;
-    border: var(--border-style);
-}
-
-/* --- 6. Projects Section (Bento Grid) --- */
 .projects {
+    padding: 5rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 4rem 2rem;
 }
 
-.section-header {
-    text-align: center;
-    margin-bottom: 4rem;
-}
-
-.section-header h2 {
-    font-family: var(--font-mono);
-    font-size: 2.5rem;
-}
-
-.section-header p {
-    font-family: var(--font-mono);
-    opacity: 0.7;
-    margin-top: 0.5rem;
-}
-
-/* Bento Grid CSS Grid Definition */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-auto-rows: 200px; /* Base height for rows */
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 250px;
     gap: 1.5rem;
+    margin-top: 2rem;
 }
 
-/* Base Card Styling */
 .project-card {
-    border: var(--border-style);
-    background-color: var(--bg-color);
-    padding: 1.5rem;
+    background: rgba(26, 5, 42, 0.8);
+    border: 1px solid rgba(253, 230, 209, 0.1);
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.2s, box-shadow 0.2s;
-    position: relative;
-    overflow: hidden;
+    transition: 0.3s;
 }
 
-/* Micro-Interaction: Neo-Retro Shadow on Hover */
 .project-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 4px 4px 0px var(--accent-color);
+    border-color: var(--accent-cyan);
+    transform: translateY(-5px);
 }
 
-/* Bento Cell Spanning */
 .project-card.large {
     grid-column: span 2;
     grid-row: span 2;
@@ -269,263 +124,165 @@ nav {
     grid-column: span 2;
 }
 
-.card-content h3 {
-    font-family: var(--font-mono);
-    font-size: 1.3rem;
-    margin: 0.5rem 0;
-}
-
-.card-content p {
-    font-size: 0.9rem;
-    opacity: 0.8;
-}
-
 .tag {
+    font-family: var(--font-mono);
     font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--accent-color);
-}
-
-.card-tech {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    margin-top: 1rem;
-    opacity: 0.6;
-}
-
-.card-visual {
-    position: absolute;
-    bottom: -20px;
-    right: -20px;
-    font-size: 4rem;
-    opacity: 0.1;
-    font-family: var(--font-mono);
-    pointer-events: none;
-}
-
-/* --- 7. Popup & CV Styling --- */
-.popup {
-    display: none; /* Hidden by default */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 2000;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-}
-
-.popup-content.character-sheet {
-    background-color: var(--bg-color);
-    border: var(--border-style);
-    width: 100%;
-    max-width: 700px;
-    padding: 2rem;
-    position: relative;
-    font-family: var(--font-mono);
-    box-shadow: 10px 10px 0 var(--accent-color);
-    animation: popupFadeIn 0.3s ease-out;
-}
-
-@keyframes popupFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.close {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 2rem;
-    cursor: none; /* Custom cursor for close button */
-    font-weight: 700;
-}
-
-.sheet-header {
-    border-bottom: var(--border-style);
-    padding-bottom: 1rem;
+    background: var(--accent-magenta);
+    padding: 2px 8px;
     margin-bottom: 1rem;
-}
-
-.class-tag {
-    color: var(--accent-color);
-    font-weight: 700;
-}
-
-.sheet-body {
-    display: flex;
-    gap: 2rem;
-}
-
-.stats-col, .xp-col {
-    flex: 1;
-}
-
-.sheet-body h3 {
-    margin-bottom: 0.5rem;
-    opacity: 0.7;
-}
-
-.stats-col ul {
-    list-style: none;
-}
-
-.stat-name {
-    font-weight: 700;
-}
-
-.stat-value {
-    color: var(--accent-color);
-}
-
-.xp-col p {
-    font-size: 0.8rem;
-    margin-bottom: 1rem;
-}
-
-/* --- 8. Footer Styling --- */
-footer {
-    border-top: var(--border-style);
-    padding: 2rem;
-    text-align: center;
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-}
-
-/* --- 9. Basic Responsiveness (Simple adaptation) --- */
-@media (max-width: 900px) {
-    .hero {
-        flex-direction: column-reverse;
-        text-align: center;
-        padding: 4rem 2rem;
-    }
-
-    .hero-bio {
-        margin: 0 auto;
-    }
-
-    .projects-grid {
-        grid-template-columns: 1fr; /* Single column on mobile */
-        grid-auto-rows: auto;
-    }
-
-    .project-card.large, .project-card.wide {
-        grid-column: span 1;
-        grid-row: span 1;
-    }
-
-    .sheet-body {
-        flex-direction: column;
-        gap: 1rem;
-    }
-}
-
-.sheet-footer {
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px dashed var(--border-color);
-    text-align: center;
-}
-
-.download-btn {
     display: inline-block;
-    padding: 12px 24px;
-    background-color: var(--text-color); /* לבן במצב כהה */
-    color: var(--bg-color); /* שחור במצב כהה */
-    text-decoration: none;
-    font-family: var(--font-mono);
-    font-weight: 700;
-    font-size: 0.9rem;
-    border: 1px solid var(--text-color);
-    transition: all 0.2s ease;
-    cursor: none; /* כדי שישתמש בעכבר המעוצב שלנו */
-}
-
-.download-btn:hover {
-    background-color: transparent;
-    color: var(--accent-color);
-    border-color: var(--accent-color);
-    box-shadow: 0 0 10px var(--accent-color);
-    transform: scale(1.05);
-}
-
-.btn-icon {
-    margin-right: 8px;
+    color: white;
 }
 
 .contact {
-    padding: 6rem 2rem;
-    border-top: var(--border-style);
     text-align: center;
-    background-color: var(--bg-color);
+    padding: 5rem 2rem;
+    border-top: 1px solid rgba(253, 230, 209, 0.1);
 }
 
-.contact h2 {
+.avatar-frame {
+    width: 150px;
+    height: 150px;
+    border: 2px solid var(--accent-cyan);
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    overflow: hidden;
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cv-label {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 10px 24px;
+    background: var(--accent-cyan);
+    color: var(--bg-dark);
     font-family: var(--font-mono);
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid var(--accent-cyan);
+    transition: all 0.3s ease;
 }
 
-.contact p {
-    max-width: 500px;
-    margin: 0 auto 2rem;
-    opacity: 0.8;
+.cv-label:hover {
+    background: transparent;
+    color: var(--accent-cyan);
+    box-shadow: 0 0 15px var(--accent-cyan);
 }
 
 .social-links {
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    margin-bottom: 3rem;
+    gap: 1rem;
+    margin: 2rem 0;
 }
 
 .social-icon {
     font-size: 1.5rem;
-    color: var(--text-color);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
-    padding: 10px;
+    color: var(--text-peach);
+    border: 1px solid rgba(253, 230, 209, 0.2);
     width: 50px;
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
+    transition: 0.3s;
 }
 
-.social-icon:hover {
-    color: var(--accent-color);
-    border: 1px solid var(--accent-color);
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.1);
-}
+    .social-icon:hover {
+        border-color: var(--accent-cyan);
+        color: var(--accent-cyan);
+    }
 
 .main-contact-btn {
+    background: var(--accent-cyan);
+    color: var(--bg-dark);
+    padding: 1rem 2rem;
     font-family: var(--font-mono);
     font-weight: 700;
-    font-size: 1.2rem;
-    color: var(--bg-color);
-    background-color: var(--text-color);
-    padding: 15px 40px;
     text-decoration: none;
-    border: var(--border-style);
-    transition: all 0.3s ease;
+    display: inline-block;
+    border: 2px solid var(--accent-cyan);
+    transition: 0.3s;
 }
 
 .main-contact-btn:hover {
-    background-color: transparent;
-    color: var(--accent-color);
-    border-color: var(--accent-color);
-    box-shadow: 0 0 20px var(--accent-color);
+    background: transparent;
+    color: var(--accent-cyan);
+    box-shadow: 0 0 20px var(--accent-cyan);
 }
+
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 2, 22, 0.98);
+    z-index: 1000000; 
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: var(--bg-dark);
+    border: 2px solid var(--accent-cyan);
+    padding: 2.5rem;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 10px 10px 0 var(--accent-magenta);
+}
+
+.close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2.5rem;
+    color: var(--accent-cyan);
+}
+
+.stat-value {
+    color: var(--accent-cyan);
+    font-weight: bold;
+}
+
+
+nav {
+    border-bottom: 1px solid rgba(253, 230, 209, 0.1);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    background: var(--bg-dark);
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+.nav-links a {
+    color: var(--text-peach);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    transition: 0.3s;
+}
+
+    .nav-links a:hover {
+        color: var(--accent-cyan);
+    }
