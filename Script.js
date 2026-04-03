@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function updateInteractables() {
-        const interactables = document.querySelectorAll('a, button, .avatar-frame, .project-card, .close, .cv-label, .skill-tag');
+        const interactables = document.querySelectorAll('a, button, .avatar-frame, .project-card, .close, .cv-label, .skill-node');
         interactables.forEach(el => {
             el.addEventListener('mouseenter', () => body.classList.add('cursor-hover'));
             el.addEventListener('mouseleave', () => body.classList.remove('cursor-hover'));
@@ -34,17 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (typewriter) type();
 
-    // --- Hero Canvas Interactive Network ---
     const canvas = document.getElementById('hero-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
         let width, height, particles = [];
 
-
-        const DOT_COLOR = '#FDE6D1'; // צבע הנקודות 
-        const LINE_RGB = '253, 230, 209'; // צבע הקווים
-        const MOUSE_LINE_RGB = '53, 242, 223'; // צבע הקווים לחיבור לעכבר
-   
+        const DOT_COLOR = '#FDE6D1';
+        const LINE_RGB = '253, 230, 209';
+        const MOUSE_LINE_RGB = '53, 242, 223';
 
         function resize() {
             width = canvas.width = window.innerWidth;
@@ -119,27 +116,27 @@ function openCV() {
     const popup = document.getElementById('cv-popup');
     popup.style.display = 'flex';
 }
+
 function closeCV() {
     const popup = document.getElementById('cv-popup');
     popup.style.display = 'none';
 }
 
-let currentCategoryIndex = 0;
 
-function rotateCategory(direction) {
-    const slides = document.querySelectorAll('.carousel-slide');
-    const titleElement = document.getElementById('carousel-title');
+function openSkillTab(evt, tabId) {
+    const panes = document.querySelectorAll('.skill-tab-pane');
+    panes.forEach(pane => {
+        pane.classList.remove('active');
+    });
 
-    slides[currentCategoryIndex].classList.remove('active');
+    const btns = document.querySelectorAll('.skill-tab-btn');
+    btns.forEach(btn => {
+        btn.classList.remove('active');
+    });
 
-    currentCategoryIndex += direction;
+    const targetPane = document.getElementById(tabId);
+    void targetPane.offsetWidth;
 
-    if (currentCategoryIndex >= slides.length) {
-        currentCategoryIndex = 0;
-    } else if (currentCategoryIndex < 0) {
-        currentCategoryIndex = slides.length - 1;
-    }
-
-    slides[currentCategoryIndex].classList.add('active');
-    titleElement.innerText = slides[currentCategoryIndex].getAttribute('data-title');
+    targetPane.classList.add('active');
+    evt.currentTarget.classList.add('active');
 }

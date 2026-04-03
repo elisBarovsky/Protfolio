@@ -11,14 +11,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="script.js"></script>
-
 </head>
 <body>
 
     <div class="cursor">
         <div class="cursor-dot"></div>
     </div>
-
+    <div class="global-grid-overlay"></div>
     <nav>
         <div class="nav-container">
             <div class="logo">Ellis.DEV</div>
@@ -43,126 +42,115 @@
     </header>
 
     <section id="about" class="about-section">
+        <!--<div class="skills-grid-overlay"></div>-->
+
         <div class="about-container">
             <div class="about-text">
-                <h2>// SYSTEM_PROFILE</h2>
+                <h2>// CHARACTER_BIO</h2>
                 <p>Crafting digital worlds where clean code meets human interaction. My background in Information Systems Development gave me the structural thinking required for complex Full Stack projects, while my Master's degree in Computer Game Design and Development allow me to dive deep into user engagement and player psychology. I love solving complex puzzles, whether that means debugging a tricky backend route, balancing game mechanics, or designing intuitive UIs. Off-screen, I'm passionate about exploring game narratives, trivia, and experimenting with new baking recipes.</p>
             </div>
 
-            <!--<div class="skills-container">
-        <h2>// TECH_STACK</h2>
-        <div class="skills-grid">
-            <div class="skill-tag interactable">
-                <i class="devicon-javascript-plain"></i>
-                <span>JavaScript</span>
-            </div>
-            <div class="skill-tag interactable">
-                <i class="devicon-react-original"></i>
-                <span>React.js</span>
-            </div>
-            <div class="skill-tag interactable">
-                <i class="devicon-html5-plain"></i>
-                <span>HTML/CSS</span>
-            </div>
-            <div class="skill-tag interactable">
-                <i class="devicon-nodejs-plain"></i>
-                <span>Node.js</span>
-            </div>
-            <div class="skill-tag interactable">
-                <i class="devicon-unity-original"></i>
-                <span>Unity Engine</span>
-            </div>
-            <div class="skill-tag interactable">
-                <i class="devicon-csharp-plain"></i>
-                <span>C#</span>
-            </div>
-            <div class="skill-tag interactable">
-                <i class="fas fa-paint-brush"></i>
-                <span>UI/UX</span>
-            </div>
-            <div class="skill-tag interactable">
-                <i class="fas fa-gamepad"></i>
-                <span>Game Design</span>
-            </div>
-        </div>
-    </div>-->
             <div class="skills-container">
-                <h2>// TECH_STACK</h2>
+                <h2>// DEV_INVENTORY</h2>
 
-                <div class="carousel-nav">
-                    <button class="nav-arrow interactable" onclick="rotateCategory(-1)">&#9664;</button>
-                    <h3 id="carousel-title" class="carousel-title">// SOFTWARE_ENGINEERING</h3>
-                    <button class="nav-arrow interactable" onclick="rotateCategory(1)">&#9654;</button>
+                <div class="skill-tabs-nav">
+                    <button class="skill-tab-btn active interactable" onclick="openSkillTab(event, 'software-tab')">Software</button>
+                    <button class="skill-tab-btn interactable" onclick="openSkillTab(event, 'gamedev-tab')">Game Dev & Design</button>
+                    <button class="skill-tab-btn interactable" onclick="openSkillTab(event, 'tools-tab')">Tools & Cloud</button>
                 </div>
 
-                <div class="carousel-track">
-                    <div class="carousel-slide active" data-title="// SOFTWARE_ENGINEERING">
-                        <div class="skills-grid">
-                            <div class="skill-tag interactable"><i class="devicon-javascript-plain"></i><span>JavaScript</span></div>
-                            <div class="skill-tag interactable"><i class="devicon-typescript-plain"></i><span>TypeScript</span></div>
-                            <div class="skill-tag interactable"><i class="devicon-csharp-plain"></i><span>C#</span></div>
-                            <div class="skill-tag interactable"><i class="devicon-react-original"></i><span>React</span></div>
-                            <div class="skill-tag interactable"><i class="devicon-html5-plain"></i><span>HTML & CSS</span></div>
-                            <div class="skill-tag interactable"><i class="devicon-jquery-plain"></i><span>jQuery</span></div>
-                            <div class="skill-tag interactable"><i class="devicon-microsoftsqlserver-plain"></i><span>SQL Server</span></div>
+                <div class="skill-tabs-content">
+
+                    <div id="software-tab" class="skill-tab-pane active">
+                        <div class="nodes-grid">
+                            <div class="skill-node interactable software-node"><i class="devicon-javascript-plain"></i><span>JavaScript</span></div>
+                            <div class="skill-node interactable software-node"><i class="devicon-typescript-plain"></i><span>TypeScript</span></div>
+                            <div class="skill-node interactable software-node"><i class="devicon-csharp-plain"></i><span>C#</span></div>
+                            <div class="skill-node interactable software-node"><i class="devicon-react-original"></i><span>React</span></div>
+                            <div class="skill-node interactable software-node"><i class="devicon-html5-plain"></i><span>HTML/CSS</span></div>
+                            <div class="skill-node interactable software-node"><i class="devicon-jquery-plain"></i><span>jQuery</span></div>
+                            <div class="skill-node interactable software-node"><i class="devicon-microsoftsqlserver-plain"></i><span>SQL Server</span></div>
                         </div>
                     </div>
 
-                    <div class="carousel-slide" data-title="// GAME_DEVELOPMENT">
-                        <div class="skills-grid">
-                            <div class="skill-tag interactable"><i class="devicon-unity-original"></i><span>Unity</span></div>
-                            <div class="skill-tag interactable"><i class="fas fa-gamepad"></i><span>Construct 3</span></div>
+                    <div id="gamedev-tab" class="skill-tab-pane">
+                        <div class="nodes-grid">
+                            <div class="skill-node interactable gamedev-node"><i class="devicon-unity-original"></i><span>Unity</span></div>
+                            <div class="skill-node interactable gamedev-node"><i class="fas fa-gamepad"></i><span>Construct 3</span></div>
+                            <div class="skill-node interactable gamedev-node"><i class="devicon-figma-plain"></i><span>Figma</span></div>
+                            <div class="skill-node interactable gamedev-node"><i class="devicon-photoshop-plain"></i><span>Photoshop</span></div>
+                            <div class="skill-node interactable gamedev-node"><i class="devicon-blender-original"></i><span>Blender</span></div>
                         </div>
                     </div>
 
-                    <div class="carousel-slide" data-title="// DESIGN_&_3D">
-                        <div class="skills-grid">
-                            <div class="skill-tag interactable"><i class="devicon-figma-plain"></i><span>Figma</span></div>
-                            <div class="skill-tag interactable"><i class="devicon-photoshop-plain"></i><span>Photoshop</span></div>
-                            <div class="skill-tag interactable"><i class="devicon-blender-original"></i><span>Blender</span></div>
+                    <div id="tools-tab" class="skill-tab-pane">
+                        <div class="nodes-grid">
+                            <div class="skill-node interactable tools-node"><i class="devicon-git-plain"></i><span>Git</span></div>
+                            <div class="skill-node interactable tools-node"><i class="devicon-azure-plain"></i><span>Azure</span></div>
+                            <div class="skill-node interactable tools-node"><i class="devicon-jira-plain"></i><span>Jira</span></div>
+                            <div class="skill-node interactable tools-node"><i class="devicon-visualstudio-plain"></i><span>VS/Code</span></div>
                         </div>
                     </div>
 
-                    <div class="carousel-slide" data-title="// TOOLS_&_CLOUD">
-                        <div class="skills-grid">
-                            <div class="skill-tag interactable"><i class="devicon-git-plain"></i><span>Git</span></div>
-                            <div class="skill-tag interactable"><i class="devicon-azure-plain"></i><span>Azure</span></div>
-                            <div class="skill-tag interactable"><i class="devicon-jira-plain"></i><span>Jira</span></div>
-                            <div class="skill-tag interactable"><i class="devicon-visualstudio-plain"></i><span>VS / Code</span></div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="projects" class="projects">
-        <h2>Featured Projects</h2>
-        <div class="projects-grid Bento">
-            <div class="project-card large">
+        <h2>// COMPLETED_QUESTS</h2>
+        <div class="projects-grid">
+
+            <div class="project-card interactable">
+                <img class="project-image" src="Images\bnb.png" alt="Bad n Breakfast Preview">
                 <div class="card-content">
-                    <span class="tag tag-magenta">Game Dev</span>
-                    <h3>Project Nebula</h3>
-                    <p>A 2D space exploration game built with Unity.</p>
-                    <div class="card-tech">Unity / C# / Aseprite</div>
+                    <span class="tag tag-magenta">Indie Game</span>
+                    <h3>Bad 'n' Breakfast</h3>
+                    <p>A passion-driven auto-running platformer where you switch forms, solve tricky riddles, and manipulate obstacles on a fast-paced quest to reach a B&B.</p>
+
+                    <div class="card-tech-list">
+                        <span class="tech-tag">Constract 3</span>
+                        <span class="tech-tag">JS</span>
+                        <span class="tech-tag">UI/UX</span>
+                        <span class="tech-tag">PhotoShop</span>
+                    </div>
                 </div>
+                <a href="https://niv-kadria.itch.io/badnbreakfast" class="view-project-btn interactable" target="_blank">PLAY ON ITCH.IO</a>
             </div>
-            <div class="project-card wide">
+
+            <div class="project-card interactable">
+                <img class="project-image" src="Images\bneiadam.png" alt="Bnei Adam Preview">
                 <div class="card-content">
-                    <span class="tag tag-cyan">Full Stack</span>
-                    <h3>DevSync Portal</h3>
-                    <p>Real-time collaboration platform for developers.</p>
-                    <div class="card-tech">React / Node.js / Socket.io</div>
+                    <span class="tag tag-magenta">Indie Game</span>
+                    <h3>Bnei Adam</h3>
+                    <p>Dive into the stories of the first biblical dynasty. Play, learn, and uncover the unique impact of generations from Adam and Eve to Noah.</p>
+
+                    <div class="card-tech-list">
+                        <span class="tech-tag">Constract 3</span>
+                        <span class="tech-tag">JS</span>
+                        <span class="tech-tag">UI/UX</span>
+                        <span class="tech-tag">PhotoShop</span>
+                    </div>
                 </div>
+                <a href="https://niv-kadria.itch.io/bneiadam" class="view-project-btn interactable" target="_blank">PLAY ON ITCH.IO</a>
             </div>
-            <div class="project-card small">
+
+            <div class="project-card interactable">
+                <img class="project-image" src="Images\escaperoom.png" alt="Escape Room Preview">
                 <div class="card-content">
-                    <span class="tag tag-pink">Experiment</span>
-                    <h3>Pixel Physics</h3>
-                    <p>JavaScript physics engine simulation.</p>
-                    <div class="card-tech">JS / Canvas / HTML5</div>
+                    <span class="tag tag-magenta">3D Puzzle</span>
+                    <h3>Escape Room</h3>
+                    <p>A high-stakes office escape room. Test your logic across 5 unique zones, racing against a ruthless 60-second timer per area to solve your way out!</p>
+                    <div class="card-tech-list">
+                        <span class="tech-tag">Unity 3D</span>
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">Blender</span>
+                        <span class="tech-tag">Animation</span>
+                    </div>
                 </div>
+                <a href="https://elisbaro.itch.io/escape-room" class="view-project-btn interactable" target="_blank">PLAY ON ITCH.IO</a>
             </div>
+
         </div>
     </section>
 
@@ -171,7 +159,7 @@
             <h2>GET_IN_TOUCH</h2>
             <div class="interactive-avatar-container">
                 <div class="avatar-frame interactable" onclick="openCV()">
-                    <img src="avatar.png" alt="Ellis Avatar" class="avatar-img">
+                    <img src="avatar.png" alt="Elis Avatar" class="avatar-img">
                 </div>
                 <div class="cv-label interactable" onclick="openCV()">View CV</div>
             </div>
@@ -189,7 +177,7 @@
         <div class="popup-content character-sheet CRT-flicker">
             <span class="close interactable" onclick="closeCV()">&times;</span>
             <div class="sheet-header">
-                <h2>CHARACTER PROFILE: ELIS</h2>
+                <h2>CHARACTER PROFILE: Ellis</h2>
                 <span class="class-tag">Class: Creative Developer</span>
             </div>
             <div class="sheet-body cv-bento">
