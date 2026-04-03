@@ -155,21 +155,39 @@
     </section>
 
     <section id="contact" class="contact">
-        <div class="contact-container">
-            <h2>GET_IN_TOUCH</h2>
-            <div class="interactive-avatar-container">
-                <div class="avatar-frame interactable" onclick="openCV()">
-                    <img src="avatar.png" alt="Elis Avatar" class="avatar-img">
+        <h2>// INITIATE_CONTACT</h2>
+
+        <div class="contact-wrapper">
+            <div class="contact-form-container">
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Form logic can be connected here!');">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="PLAYER NAME" required class="interactable">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="EMAIL ADDRESS" required class="interactable">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="5" placeholder="ENTER MESSAGE..." required class="interactable"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn interactable">TRANSMIT MESSAGE</button>
+                </form>
+            </div>
+
+            <div class="contact-info-container">
+                <div class="interactive-avatar-container">
+                    <div class="avatar-frame interactable" onclick="openCV()">
+                        <img src="Images\avatar.png" alt="Elis Avatar" class="avatar-img">
+                    </div>
+                    <div class="cv-label interactable" onclick="openCV()">ACCESS CV</div>
                 </div>
-                <div class="cv-label interactable" onclick="openCV()">View CV</div>
+
+                <div class="social-links">
+                    <a href="#" class="social-icon interactable"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon interactable"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-icon interactable"><i class="fab fa-instagram"></i></a>
+                    <!--<a href="mailto:elis@example.com" class="social-icon interactable"><i class="far fa-envelope"></i></a>-->
+                </div>
             </div>
-            <div class="social-links">
-                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                <a href="mailto:elis@example.com" class="social-icon"><i class="far fa-envelope"></i></a>
-            </div>
-            <a href="mailto:elis@example.com" class="main-contact-btn">SAY HELLO</a>
         </div>
     </section>
 

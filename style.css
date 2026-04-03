@@ -578,18 +578,136 @@ body.cursor-hover .cursor-dot {
 }
 
 .contact {
-    text-align: center;
-    padding: 5rem 2rem;
+    padding: 6rem 2rem;
     border-top: 1px solid rgba(253, 230, 209, 0.1);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact h2 {
+    font-family: var(--font-mono);
+    color: var(--accent-cyan);
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(53, 242, 223, 0.3);
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: stretch; 
+}
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+} 
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    background: rgba(10, 2, 22, 0.6);
+    border: 1px solid #E03F804d;
+    padding: 1rem;
+    color: var(--text-peach);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-magenta);
+    box-shadow: 0 0 15px #E03F804d;
+    background: rgba(10, 2, 22, 0.9);
+}
+
+.form-group input:-webkit-autofill,
+.form-group input:-webkit-autofill:hover,
+.form-group input:-webkit-autofill:focus,
+.form-group textarea:-webkit-autofill,
+.form-group textarea:-webkit-autofill:hover,
+.form-group textarea:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--text-peach);
+    -webkit-box-shadow: 0 0 0px 1000px var(--bg-dark) inset;
+    border: 1px solid var(--accent-magenta);
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(253, 230, 209, 0.4);
+    letter-spacing: 1px;
+}
+
+.submit-btn {
+    background: transparent;
+    border: 2px solid var(--accent-cyan);
+    color: var(--accent-cyan);
+    padding: 1rem 2rem;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: var(--accent-cyan);
+    transition: width 0.3s ease-in-out;
+    z-index: -1;
+}
+
+.submit-btn:hover {
+    color: var(--bg-dark);
+    box-shadow: 0 0 15px var(--accent-cyan);
+}
+
+.submit-btn:hover::before {
+    width: 100%;
+}
+
+.contact-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    height: 100%; 
+    gap: 2.5rem; 
+}
+
+.interactive-avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .avatar-frame {
-    width: 150px;
-    height: 150px;
-    border: 2px solid var(--accent-cyan);
-    border-radius: 50%;
-    margin: 0 auto 1rem;
+/*    width: 160px;*/
+/*    height: 160px;*/
+    height: 210px;
+/*    border: 2px solid var(--accent-cyan);*/
+/*    border-radius: 50%;*/
     overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar-frame:hover {
+    transform: scale(1.05);
+/*    box-shadow: 0 0 20px rgba(53, 242, 223, 0.4);*/
 }
 
 .avatar-img {
@@ -600,31 +718,48 @@ body.cursor-hover .cursor-dot {
 
 .cv-label {
     display: inline-block;
-    margin-top: 1rem;
-    padding: 10px 24px;
-    background: var(--accent-cyan);
-    color: var(--bg-dark);
+    margin-top: -15px; 
+    padding: 8px 24px;
+    background: var(--bg-dark); 
+    color: var(--accent-cyan); 
     font-family: var(--font-mono);
     font-weight: 700;
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     border: 2px solid var(--accent-cyan);
-    transition: all 0.3s ease;
+    z-index: 2;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cv-label::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: var(--accent-cyan);
+    transition: width 0.3s ease-in-out;
+    z-index: -1;
 }
 
 .cv-label:hover {
-    background: transparent;
-    color: var(--accent-cyan);
+    color: var(--bg-dark);
     box-shadow: 0 0 15px var(--accent-cyan);
+}
+
+.cv-label:hover::before {
+    width: 100%;
 }
 
 .social-links {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin: 2rem 0;
-}
+    gap: 1.2rem;
+    margin: 0; 
 
 .social-icon {
     font-size: 1.5rem;
@@ -636,30 +771,15 @@ body.cursor-hover .cursor-dot {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    border-radius: 4px; 
 }
 
 .social-icon:hover {
-    border-color: var(--accent-cyan);
-    color: var(--accent-cyan);
-}
-
-.main-contact-btn {
-    background: var(--accent-cyan);
-    color: var(--bg-dark);
-    padding: 1rem 2rem;
-    font-family: var(--font-mono);
-    font-weight: 700;
-    text-decoration: none;
-    display: inline-block;
-    border: 2px solid var(--accent-cyan);
-    transition: 0.3s;
-}
-
-.main-contact-btn:hover {
-    background: transparent;
-    color: var(--accent-cyan);
-    box-shadow: 0 0 20px var(--accent-cyan);
+    border-color: var(--accent-magenta); 
+    color: var(--accent-magenta);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(224, 63, 128, 0.2);
 }
 
 .popup {
