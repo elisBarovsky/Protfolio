@@ -158,20 +158,18 @@
         <h2>// INITIATE_CONTACT</h2>
 
         <div class="contact-wrapper">
-            <div class="contact-form-container">
-                <form class="contact-form" onsubmit="event.preventDefault(); alert('Form logic can be connected here!');">
-                    <div class="form-group">
-                        <input type="text" id="name" placeholder="PLAYER NAME" required class="interactable">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" placeholder="EMAIL ADDRESS" required class="interactable">
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" rows="5" placeholder="ENTER MESSAGE..." required class="interactable"></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn interactable">TRANSMIT MESSAGE</button>
-                </form>
-            </div>
+            <form class="contact-form" action="https://formspree.io/f/mgopnzby" method="POST">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="PLAYER NAME" required class="interactable">
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="EMAIL ADDRESS" required class="interactable">
+                </div>
+                <div class="form-group">
+                    <textarea name="message" rows="5" placeholder="ENTER MESSAGE..." required class="interactable"></textarea>
+                </div>
+                <button type="submit" class="submit-btn interactable">TRANSMIT MESSAGE</button>
+            </form>
 
             <div class="contact-info-container">
                 <div class="interactive-avatar-container">
