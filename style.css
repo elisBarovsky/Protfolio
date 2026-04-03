@@ -759,8 +759,8 @@ body.cursor-hover .cursor-dot {
     display: flex;
     justify-content: center;
     gap: 1.2rem;
-    margin: 0; 
-
+    margin: 0;
+}
 .social-icon {
     font-size: 1.5rem;
     color: var(--text-peach);
@@ -846,6 +846,96 @@ nav {
 
 .nav-links a:hover {
     color: var(--accent-cyan);
+}
+
+.character-sheet {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.sheet-header {
+    border-bottom: 1px solid rgba(53, 242, 223, 0.3);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.sheet-header h2 {
+    color: var(--accent-cyan);
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.class-tag {
+    background: var(--accent-magenta);
+    color: white;
+    padding: 4px 8px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    box-shadow: 0 0 5px var(--accent-magenta);
+}
+
+.cv-bento {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.cv-card {
+    background: rgba(10, 2, 22, 0.6);
+    border: 1px solid rgba(53, 242, 223, 0.3);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.cv-card:hover {
+    border-color: var(--accent-magenta);
+    box-shadow: 0 0 10px rgba(224, 63, 128, 0.2);
+    transform: translateY(-2px);
+}
+
+.cv-card.large {
+    grid-column: span 2;
+}
+
+.cv-card h3 {
+    color: var(--accent-cyan);
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.cv-card p {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-peach);
+}
+
+.sheet-footer {
+    text-align: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(53, 242, 223, 0.3);
+}
+
+.download-btn {
+    background: transparent;
+    color: var(--accent-cyan);
+    border: 2px solid var(--accent-cyan);
+    padding: 10px 20px;
+    font-family: var(--font-mono);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.download-btn:hover {
+    background: var(--accent-cyan);
+    color: var(--bg-dark);
+    box-shadow: 0 0 15px var(--accent-cyan);
 }
 
 @media (max-width: 800px) {
