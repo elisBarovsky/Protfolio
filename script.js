@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (canvas) {
         const ctx = canvas.getContext('2d');
         let width, height, particles = [];
+        let textZone = { x: -1000, y: -1000, w: 0, h: 0 }; 
 
         const DOT_COLOR = '#FDE6D1';
         const LINE_RGB = '253, 230, 209';
@@ -45,12 +46,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function resize() {
             width = canvas.width = window.innerWidth;
-            const heroHeight = document.querySelector('.hero').offsetHeight;
-            const aboutHeight = document.querySelector('#about').offsetHeight;
+            const hero = document.querySelector('.hero');
+            const about = document.querySelector('#about');
+
+            const heroHeight = hero ? hero.offsetHeight : 0;
+            const aboutHeight = about ? about.offsetHeight : 0;
             height = canvas.height = heroHeight + aboutHeight;
+
+            const textEl = document.querySelector('.about-text');
+            if (textEl && canvas) {
+                const canvasRect = canvas.getBoundingClientRect();
+                const textRect = textEl.getBoundingClientRect();
+                textZone = {
+                    x: textRect.left - canvasRect.left,
+                    y: textRect.top - canvasRect.top,
+                    w: textRect.width,
+                    h: textRect.height
+                };
+            }
         }
         window.addEventListener('resize', resize);
         resize();
+
+        function isInTextZone(x, y) {
+            const pad = 20;
+            return (x > textZone.x - pad &&
+                x < textZone.x + textZone.w + pad &&
+                y > textZone.y - pad &&
+                y < textZone.y + textZone.h + pad);
+        }
 
         class Particle {
             constructor() {
@@ -67,10 +91,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (this.y < 0 || this.y > height) this.vy *= -1;
             }
             draw() {
-                ctx.fillStyle = DOT_COLOR;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
+                if (!isInTextZone(this.x, this.y)) {
+                    ctx.fillStyle = DOT_COLOR;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
             }
         }
 
@@ -90,24 +116,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 particles.forEach(p2 => {
                     const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
                     if (dist < 100) {
-                        ctx.strokeStyle = `rgba(${LINE_RGB}, ${1 - dist / 100})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
+                        if (!isInTextZone(p.x, p.y) && !isInTextZone(p2.x, p2.y)) {
+                            ctx.strokeStyle = `rgba(${LINE_RGB}, ${1 - dist / 100})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.stroke();
+                        }
                     }
                 });
 
                 if (localMouseY >= 0 && localMouseY <= height && localMouseX >= 0 && localMouseX <= width) {
                     const mouseDist = Math.hypot(p.x - localMouseX, p.y - localMouseY);
                     if (mouseDist < 150) {
-                        ctx.strokeStyle = `rgba(${MOUSE_LINE_RGB}, ${1 - mouseDist / 150})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(localMouseX, localMouseY);
-                        ctx.stroke();
+                        if (!isInTextZone(p.x, p.y) && !isInTextZone(localMouseX, localMouseY)) {
+                            ctx.strokeStyle = `rgba(${MOUSE_LINE_RGB}, ${1 - mouseDist / 150})`;
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(localMouseX, localMouseY);
+                            ctx.stroke();
+                        }
                     }
                 }
             });

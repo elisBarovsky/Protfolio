@@ -199,9 +199,20 @@ nav {
     width: 100%;
     max-width: 800px;
     text-align: center;
+    position: relative;
+    z-index: 10;
+    background: transparent; 
 }
 
-.about-text h2, .skills-container h2 {
+.about-text h2 {
+    font-family: var(--font-mono);
+    color: var(--accent-cyan);
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.skills-container h2 {
     font-family: var(--font-mono);
     color: var(--accent-cyan);
     font-size: 2.2rem;
@@ -212,7 +223,8 @@ nav {
 .about-text p {
     margin-bottom: 1rem;
     line-height: 1.8;
-    opacity: 0.9;
+    opacity: 0.95;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .skills-container {
@@ -920,7 +932,9 @@ nav {
         font-size: 1.25rem !important;
         word-wrap: break-word;
     }
-
+    .about-text {
+        padding: 1.5rem;
+    }
     .close {
         top: 0px;
         width: 35px;
