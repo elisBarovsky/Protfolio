@@ -45,7 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function resize() {
             width = canvas.width = window.innerWidth;
-            height = canvas.height = document.querySelector('.hero').offsetHeight;
+            const heroHeight = document.querySelector('.hero').offsetHeight;
+            const aboutHeight = document.querySelector('#about').offsetHeight;
+            height = canvas.height = heroHeight + aboutHeight;
         }
         window.addEventListener('resize', resize);
         resize();
@@ -72,10 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        for (let i = 0; i < 80; i++) particles.push(new Particle());
+        for (let i = 0; i < 130; i++) particles.push(new Particle());
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
+
+            const rect = canvas.getBoundingClientRect();
+            const localMouseX = mouseX - rect.left;
+            const localMouseY = mouseY - rect.top;
 
             particles.forEach(p => {
                 p.update();
@@ -93,15 +99,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
-                const heroRect = document.querySelector('.hero').getBoundingClientRect();
-                if (mouseY >= heroRect.top && mouseY <= heroRect.bottom) {
-                    const mouseDist = Math.hypot(p.x - mouseX, p.y - (mouseY - heroRect.top));
+                if (localMouseY >= 0 && localMouseY <= height && localMouseX >= 0 && localMouseX <= width) {
+                    const mouseDist = Math.hypot(p.x - localMouseX, p.y - localMouseY);
                     if (mouseDist < 150) {
                         ctx.strokeStyle = `rgba(${MOUSE_LINE_RGB}, ${1 - mouseDist / 150})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(mouseX, mouseY - heroRect.top);
+                        ctx.lineTo(localMouseX, localMouseY);
                         ctx.stroke();
                     }
                 }
@@ -110,6 +115,72 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         animate();
     }
+
+    const tabNav = document.getElementById('skill-tabs-nav');
+    if (tabNav) {
+        let isScrolling;
+        tabNav.addEventListener('scroll', () => {
+            if (window.innerWidth > 800) return;
+
+            window.clearTimeout(isScrolling);
+
+            isScrolling = setTimeout(() => {
+                const navCenter = tabNav.getBoundingClientRect().left + (tabNav.offsetWidth / 2);
+                let closestBtn = null;
+                let minDiff = Infinity;
+
+                document.querySelectorAll('.skill-tab-btn').forEach(btn => {
+                    const rect = btn.getBoundingClientRect();
+                    const btnCenter = rect.left + (rect.width / 2);
+                    const diff = Math.abs(navCenter - btnCenter);
+
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        closestBtn = btn;
+                    }
+                });
+
+                if (closestBtn && !closestBtn.classList.contains('active')) {
+                    const evt = new Event('click');
+                    const tabId = closestBtn.getAttribute('onclick').match(/'([^']+)'/)[1];
+                    openSkillTab({ currentTarget: closestBtn }, tabId);
+                }
+            }, 130); 
+        });
+    }
+
+    const sections = document.querySelectorAll('#about, #projects, #contact');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '-30% 0px -50% 0px',
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => link.classList.remove('active'));
+
+                const activeLink = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+                if (activeLink) activeLink.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(sec => observer.observe(sec));
+
+    const heroObserver = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            navLinks.forEach(link => link.classList.remove('active'));
+        }
+    }, { rootMargin: '-10% 0px 0px 0px' });
+
+    const hero = document.querySelector('.hero');
+    if (hero) heroObserver.observe(hero);
+
+
 });
 
 function openCV() {
@@ -139,4 +210,28 @@ function openSkillTab(evt, tabId) {
 
     targetPane.classList.add('active');
     evt.currentTarget.classList.add('active');
+
+    evt.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+}
+
+function moveCarousel(direction) {
+    const grid = document.getElementById('projects-grid');
+    if (grid) {
+        const cardWidth = grid.offsetWidth;
+
+        grid.scrollBy({
+            left: direction * cardWidth,
+            behavior: 'smooth'
+        });
+    }
+}
+
+function scrollTabs(direction) {
+    const btns = Array.from(document.querySelectorAll('.skill-tab-btn'));
+    const activeIndex = btns.findIndex(btn => btn.classList.contains('active'));
+    let newIndex = activeIndex + direction;
+
+    if (newIndex >= 0 && newIndex < btns.length) {
+        btns[newIndex].click(); 
+    }
 }
