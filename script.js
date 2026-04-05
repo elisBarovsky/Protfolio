@@ -210,7 +210,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const hero = document.querySelector('.hero');
     if (hero) heroObserver.observe(hero);
 
+    const secretLogo = document.getElementById('secret-logo');
+    if (secretLogo) {
+        secretLogo.addEventListener('click', () => {
+            const originalText = secretLogo.textContent;
 
+            secretLogo.textContent = 'LEVEL UP! +100XP';
+            secretLogo.classList.add('hacked');
+
+            const randomHue1 = Math.floor(Math.random() * 360);
+            const randomHue2 = Math.floor(Math.random() * 360);
+            document.documentElement.style.setProperty('--accent-cyan', `hsl(${randomHue1}, 100%, 60%)`);
+            document.documentElement.style.setProperty('--accent-magenta', `hsl(${randomHue2}, 100%, 60%)`);
+
+            setTimeout(() => {
+                secretLogo.textContent = originalText;
+                secretLogo.classList.remove('hacked');
+            }, 1500);
+        });
+    }
 });
 
 function openCV() {
