@@ -262,18 +262,20 @@ function openSkillTab(evt, tabId) {
     evt.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
 }
 
+
 function moveCarousel(direction) {
     const grid = document.getElementById('projects-grid');
     if (grid) {
-        const cardWidth = grid.offsetWidth;
-
-        grid.scrollBy({
-            left: direction * cardWidth,
-            behavior: 'smooth'
-        });
+        const card = grid.querySelector('.project-card');
+        if (card) {
+            const scrollAmount = card.offsetWidth + 32;
+            grid.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
     }
 }
-
 function scrollTabs(direction) {
     const btns = Array.from(document.querySelectorAll('.skill-tab-btn'));
     const activeIndex = btns.findIndex(btn => btn.classList.contains('active'));

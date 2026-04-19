@@ -73,11 +73,6 @@ nav {
     justify-content: space-between;
     padding: 0 2rem;
 }
-/*
-.logo {
-    font-family: var(--font-mono);
-    font-weight: 700;
-}*/
 
 .logo {
     font-family: var(--font-mono);
@@ -188,7 +183,7 @@ nav {
     left: 0;
     z-index: 1;
     opacity: 0.6;
-    pointer-events: none; 
+    pointer-events: none;
 }
 
 .hero-content {
@@ -246,7 +241,7 @@ nav {
     text-align: center;
     position: relative;
     z-index: 10;
-    background: transparent; 
+    background: transparent;
 }
 
 .about-text h2 {
@@ -457,6 +452,7 @@ nav {
     text-shadow: 0 0 15px var(--accent-magenta);
 }
 
+/* --- Projects Section (Desktop) --- */
 .projects {
     padding: 4rem 2rem;
     max-width: 1200px;
@@ -472,22 +468,36 @@ nav {
     text-align: center;
 }
 
-.carousel-btn {
-    display: none;
+.carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
 }
 
 .carousel-viewport {
-    overflow: visible;
+    overflow: hidden;
     width: 100%;
+    padding: 10px 0;
 }
 
 .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: 2rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+.projects-grid::-webkit-scrollbar {
+    display: none;
 }
 
 .project-card {
+    flex: 0 0 calc(40% - 10rem);
+    scroll-snap-align: start;
     background: rgba(26, 5, 42, 0.9);
     border: 1px solid rgba(253, 230, 209, 0.1);
     display: flex;
@@ -501,11 +511,79 @@ nav {
     transform: translateY(-5px);
 }
 
+.carousel-btn {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(10, 2, 22, 0.9);
+    border: 2px solid var(--accent-cyan);
+    color: var(--accent-cyan);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.carousel-btn:hover {
+    background: var(--accent-cyan);
+    color: var(--bg-dark);
+    box-shadow: 0 0 15px var(--accent-cyan);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn.prev {
+    left: -15px;
+}
+
+.carousel-btn.next {
+    right: -15px;
+}
+
 .project-image {
     width: 100%;
     height: 180px;
     object-fit: cover;
     border-bottom: 1px solid rgba(253, 230, 209, 0.1);
+}
+
+.wip-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: repeating-linear-gradient( 45deg, rgba(10, 2, 22, 0.9), rgba(10, 2, 22, 0.9) 15px, rgba(224, 63, 128, 0.15) 15px, rgba(224, 63, 128, 0.15) 30px );
+    color: var(--accent-magenta);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 1rem;
+}
+
+.wip-placeholder i {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    color: rgba(224, 63, 128, 0.5);
+}
+
+.wip-btn {
+    border-color: rgba(253, 230, 209, 0.2) !important;
+    color: rgba(253, 230, 209, 0.4) !important;
+    cursor: not-allowed !important;
+}
+
+.wip-btn:hover {
+    box-shadow: none !important;
+    transform: none !important;
+    background: transparent !important;
+}
+
+.wip-btn::before {
+    display: none !important;
 }
 
 .card-content {
@@ -787,7 +865,6 @@ nav {
     box-shadow: 0 5px 15px rgba(224, 63, 128, 0.2);
 }
 
-
 .popup {
     display: none;
     position: fixed;
@@ -811,7 +888,7 @@ nav {
     box-shadow: 10px 10px 0 var(--accent-magenta);
     max-height: 85vh;
     overflow-y: auto;
-    scrollbar-width: none; 
+    scrollbar-width: none;
 }
 
 .popup-content::-webkit-scrollbar {
@@ -819,13 +896,13 @@ nav {
 }
 
 .close {
-    position: sticky; 
-    top: 0px; 
-    align-self: flex-end; 
-    margin-bottom: -20px; 
+    position: sticky;
+    top: 0px;
+    align-self: flex-end;
+    margin-bottom: -20px;
     font-size: 1.8rem;
     color: var(--accent-cyan);
-    background: rgba(10, 2, 22, 1); 
+    background: rgba(10, 2, 22, 1);
     border: 2px solid var(--accent-cyan);
     border-radius: 50%;
     width: 45px;
@@ -977,15 +1054,17 @@ nav {
         font-size: 1.25rem !important;
         word-wrap: break-word;
     }
+
     .about-text {
         padding: 1.5rem;
     }
+
     .close {
         top: 0px;
         width: 35px;
         height: 40px;
         font-size: 1.5rem;
-        margin-bottom: -20px; 
+        margin-bottom: -20px;
     }
 
     .hero-content {
@@ -1017,16 +1096,16 @@ nav {
         transition: 0.3s;
     }
 
-    .tab-arrow-btn.prev {
-        left: 0px;
-    }
+        .tab-arrow-btn.prev {
+            left: 0px;
+        }
 
-    .tab-arrow-btn.next {
-        right: 0px;
-    }
+        .tab-arrow-btn.next {
+            right: 0px;
+        }
 
     .skill-tabs-nav {
-        width: 80%; 
+        width: 80%;
         margin: 0 auto;
         flex-wrap: nowrap;
         overflow-x: auto;
@@ -1047,28 +1126,29 @@ nav {
         flex-shrink: 0;
         scroll-snap-align: center !important;
         margin: 0 15px;
-        min-width: 180px; 
+        min-width: 180px;
         white-space: normal;
     }
 
     .carousel-container {
         position: relative;
-        width: 100%;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: center; 
+        width: 100%;
     }
 
     .carousel-viewport {
-        width: 80%; 
+        width: 85%; 
+        margin: 0 auto; 
         overflow: hidden;
-        border-radius: 8px; 
+        border-radius: 8px;
     }
 
     .projects-grid {
         display: flex !important;
-        flex-direction: row !important; 
-        gap: 0 !important; 
+        flex-direction: row !important;
+        gap: 0 !important;
         overflow-x: auto !important;
         scroll-snap-type: x mandatory !important;
         scroll-behavior: smooth !important;
@@ -1082,10 +1162,11 @@ nav {
     }
 
     .project-card {
-        min-width: 100% !important; 
+        flex: 0 0 100% !important; 
+        min-width: 100% !important;
         width: 100% !important;
         display: flex !important;
-        flex-direction: column !important; 
+        flex-direction: column !important;
         scroll-snap-align: start !important;
         flex-shrink: 0 !important;
         box-sizing: border-box !important;
